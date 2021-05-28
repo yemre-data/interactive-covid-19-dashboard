@@ -2,7 +2,7 @@ import pandas as pd
 import missingno as msno
 
 # Read data
-df_global = pd.read_csv('Covid_Data/time_series_covid19_confirmed_global.csv')
+df_global = pd.read_csv('Covid_Data/time_series_covid19_conf.csv')
 df_deaths = pd.read_csv('Covid_Data/time_series_covid19_deaths_global.csv')
 
 # To see our data
