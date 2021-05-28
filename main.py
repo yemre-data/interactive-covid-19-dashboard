@@ -28,11 +28,11 @@ df_deaths.rename(columns = {'Country/Region':'Date'}, inplace = True)
 # Creating streamlit Interface
 
 # setting title
-st.markdown("# Welcome to Board of Interactive COVID-19")
+st.markdown("# Welcome to Interactive Covid-19 Analyze Board ")
 st.markdown("This project has performed by the CRI team at Paris. "
-            "As vaccinations increase and covid-19 approaches towards the end. "
-            "We would like current situation of Covid on the world."
-            "The page has created for analyze Covid-19 confirmed cases and deaths data from January 2020 to now.   ")
+            "As vaccinations increase and covid-19 approaches towards the end, "
+            "we would like analyze current situation of Covid on the world. "
+            "The page has created for analyze Covid-19 confirmed cases and deaths data from Jan 2020 to now.   ")
 st.markdown("(Data has taken from open source: https://github.com/CSSEGISandData/COVID-19) ")
 
 st.image('CovidData/covid.jpg')
