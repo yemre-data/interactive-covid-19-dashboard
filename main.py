@@ -23,9 +23,9 @@ from plotly.subplots import make_subplots
 df_confirm = pd.read_csv('CovidData/df_confirm.csv')
 df_deaths = pd.read_csv('CovidData/df_death.csv')
 
-pd.to_datetime(df_confirm.date)
-pd.to_datetime(df_deaths.date)
-df_confirm =  df_confirm.sort_values(by=['date'], ascending = False)
+df_confirm['date'] =pd.to_datetime(df_confirm.date)
+df_deaths['date'] = pd.to_datetime(df_deaths.date)
+df_confirm = df_confirm.sort_values(by=['date'], ascending = False)
 df_deaths = df_deaths.sort_values(by=['date'], ascending = False)
 
 # Some data wrangling
@@ -59,7 +59,7 @@ end_date = st.sidebar.date_input('Select End Date', datetime.date(2021,6,4))
 st.markdown('<style>h1{color: red;}</style>', unsafe_allow_html=True)
 #st.write('<span style="color:%s">%s</span>' % ('red', " **Total Confirmed Cases : and Total Deaths : ** "), unsafe_allow_html=True)
 new_confirmed = df_confirm[df_confirm['country'].isin(select_country)]
-print(new_confirmed)
+new_confirmed = new_confirmed.sort_values(by=['date'], ascending = False)
 confirmed_plot = px.line(new_confirmed, x = 'date', y = 'value',color='country')
 confirmed_plot.update_layout(title="Confirmed Cases",
                  xaxis = dict(title = 'Date'),
@@ -67,6 +67,7 @@ confirmed_plot.update_layout(title="Confirmed Cases",
                  legend_title=dict(text='<b>Countries</b>'),
                   )
 new_death =  df_deaths[df_deaths['country'].isin(select_country)]
+new_death = new_death.sort_values(by=['date'], ascending = False)
 death_plot = px.line(new_death, x = 'date', y = 'value',color='country')
 death_plot.update_layout(title="Deaths Cases",
                  xaxis = dict(title = 'Date'),
