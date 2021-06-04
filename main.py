@@ -36,9 +36,13 @@ st.markdown("This project has performed by the CRI team at Paris. "
 st.markdown("(Data has taken from open source: https://github.com/CSSEGISandData/COVID-19) ")
 
 st.image('CovidData/covid.jpg')
-
-
-
+st.sidebar.title("Selector")
+case_death = st.sidebar.radio("Coivd 19 Patients Status",('Confirmed cases','Death cases'))
+country_list =list(df_global.columns.values)
+country_list.remove("Date")
+country_list = list(set(country_list))
+country_list.sort()
+select_country = st.sidebar.selectbox("Select Country",country_list)
 
 
 
