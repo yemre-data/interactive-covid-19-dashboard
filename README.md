@@ -20,7 +20,7 @@ Dashboard and Visualisation was created by the three students of [CRI-AIRE Maste
 ## How to install
 
 * Pycharm  CE example:
-run on Pycharm terminal: $ streamlit run main.py
+run on [Pycharm](https://www.jetbrains.com/fr-fr/pycharm/) terminal: $ streamlit run main.py
 
 ## License
 
