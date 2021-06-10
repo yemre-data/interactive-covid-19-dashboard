@@ -30,6 +30,7 @@ run on Pycharm terminal:
 ```$ streamlit run main.py```
 
 Congrats! You can try!
+
 It's an practice of open source course by a group of students, feel free to give us feedback! Thank you!
 
 ## License
