@@ -18,9 +18,17 @@ Dashboard and Visualisation was created by the three students of [CRI-AIRE Maste
 - Creating streamlit Interface on Pycharm
 
 ## How to install
-- 1st You need to install [streamlit](https://streamlit.io/) '$ pip install streamlit'
-- [Pycharm](https://www.jetbrains.com/fr-fr/pycharm/)  CE example:
-run on Pycharm terminal: '$ streamlit run main.py'
+- 1st You need to install [streamlit](https://streamlit.io/) 
+```
+$ pip install streamlit
+```
+- 2nd Please install [Pycharm](https://www.jetbrains.com/fr-fr/pycharm/) ， you can choose PyCharm Community Edition, it's free.
+
+- 3rd CE example:
+run on Pycharm terminal:
+```$ streamlit run main.py```
+
+Congrats! You can try!
 
 ## License
 
