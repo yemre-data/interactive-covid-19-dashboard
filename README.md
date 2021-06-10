@@ -15,7 +15,7 @@ Dashboard and Visualisation was created by the three students of [CRI-AIRE Maste
 ## Dev Process
 - COVID DATA extracted from open source - 21/05/2021
 - Population DATA extracted from Kaggle - 2020
-- Creating streamlit Interface on Pycharm
+- Creating streamlit interface on Pycharm
 
 ## How to install
 - 1st You need to install [streamlit](https://streamlit.io/) 
@@ -26,11 +26,14 @@ $ pip install streamlit
 
 - 3rd CE example:
 run on Pycharm terminal:
+
 ```$ streamlit run main.py```
 
 Congrats! You can try!
+It's an practice of open source course by a group of students, feel free to give us feedback! Thank you!
 
 ## License
 
 MIT Licence 
+
 Copyright (c) 2021 yemre-data
