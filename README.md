@@ -27,7 +27,9 @@ $ pip install streamlit
 - 3rd CE example:
 run on Pycharm terminal:
 
-```$ streamlit run main.py```
+```
+$ streamlit run main.py
+```
 
 Congrats! You can try!
 
