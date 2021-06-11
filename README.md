@@ -58,3 +58,10 @@ It's an practice of open source course by a group of students, feel free to give
 MIT Licence 
 
 Copyright (c) 2021 yemre-data
+
+## Authors
+
+[@yemre-data](https://github.com/yemre-data) 
+[@LishaLING](https://github.com/LishaLing)
+[@KaoutarLanjri](https://github.com/KaoutarLanjri)
+
