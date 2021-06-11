@@ -12,7 +12,8 @@
 The number of cases and deaths per country and date are provided as open-data by the [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19). 
 Dashboard and Visualisation was created by the three students of [CRI-AIRE Master](https://master.cri-paris.org/en).
 
-You can select new cases and new death, total confirmed cases per million(normalized) and total death cases per million(normalized), vaccination per hundred and conutry by date. Feel free to play and the the graph, your select will give by day results.
+You can select new cases and new death, total confirmed cases per million(normalized) and total death cases per million(normalized), vaccination per hundred and conutry by date. Feel free to play and the the graph.
+
 
 
 ## Dev Process
