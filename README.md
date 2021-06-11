@@ -18,8 +18,7 @@ Dashboard and Visualisation was created by the three students of [CRI-AIRE Maste
 - Creating streamlit interface on Pycharm
 
 ## How to install
-- 1st You need to install [streamlit](https://streamlit.io/) 
-- and [pandas](https://pandas.pydata.org/), [plotly](https://plotly.com/)
+- 1st You need to install [streamlit](https://streamlit.io/) and [pandas](https://pandas.pydata.org/), [plotly](https://plotly.com/)
 
 Please install the project dependencies run pip install -r requirements.txt
 
