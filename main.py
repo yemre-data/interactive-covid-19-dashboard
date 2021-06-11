@@ -157,3 +157,4 @@ st.write('<span style="color:%s">%s</span>' % ('red', " **Total Deaths on World 
 st.write('<span style="color:%s">%s</span>' % ('black', " **Total Confirmed Cases on World: **" +str(world_cases)), unsafe_allow_html=True)
 st.write('<span style="color:%s">%s</span>' % ('green', " ** 💉💉💉💉💉💉💉💉💉💉💉💉 Total Vacinations on World: **" +str(world_vac) +" **💉💉💉💉💉💉💉💉💉💉💉💉💉**"), unsafe_allow_html=True)
 
+st.write("⚠️**If you want look deeply covid cases and deaths you should select from sidebar.**")
