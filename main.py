@@ -50,8 +50,8 @@ st.sidebar.write("You can select new cases & new death, total confirmed cases pe
                  "to play see the graph. ")
 st.sidebar.write('Your select will give by day results.')
 cd = st.sidebar.checkbox('New Cases and Death ')
-total = st.sidebar.checkbox('Total Confirmed Cases and Deaths(normalized)')
-vac = st.sidebar.checkbox('Vaccination')
+total = st.sidebar.checkbox('Cumulative Confirmed Cases and Deaths')
+vac = st.sidebar.checkbox('Vaccination by day and Cumulative')
 
 start_date = st.sidebar.date_input('Select Start Date', datetime.date(2020, 1, 24))
 end_date = st.sidebar.date_input('Select End Date', datetime.datetime.now().date())
