@@ -16,34 +16,34 @@ import datetime
 import streamlit as st
 import folium
 import streamlit as st
+st.set_page_config(layout="wide")
 import plotly.graph_objects as go
 import numpy as np
 from plotly.subplots import make_subplots
+
+
 # Read data
 def take_data():
-    all_data = pd.read_csv('https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true').reset_index()
+    all_data = pd.read_csv(
+        'https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true').reset_index()
 
-    all_data = all_data[['continent', 'location', 'date','new_cases','new_deaths','total_cases_per_million','total_deaths_per_million','total_vaccinations_per_hundred']].copy()
+    all_data = all_data[['location', 'date', 'new_cases', 'new_deaths', 'total_cases_per_million',
+                         'total_deaths_per_million', 'total_vaccinations_per_hundred']].copy()
     return all_data
 
-df_confirm = pd.read_csv('CovidData/df_confirm.csv')
-df_deaths = pd.read_csv('CovidData/df_death.csv')
 
-
-df_confirm['date'] =pd.to_datetime(df_confirm.date)
-df_deaths['date'] = pd.to_datetime(df_deaths.date)
-
-df_confirm = df_confirm.sort_values(by=['date'], ascending = False)
-df_deaths = df_deaths.sort_values(by=['date'], ascending = False)
-
-# Some data wrangling
-
-country_list =list(all_data.location.unique())
+# Import Data and some wrangling
+all_data = take_data()
+all_data['date'] = pd.to_datetime(all_data.date)
+all_data = all_data.sort_values(by=['date'], ascending=False)
+country_list = list(all_data.location.unique())
 country_list.sort()
+st.cache(persist=True)
 
 # Creating streamlit Interface
 
 # setting title
+st.markdown('<style>h1{color: red;}</style>', unsafe_allow_html=True)
 st.markdown("# Welcome to Interactive Covid-19 Analysis DashBoard ")
 
 st.markdown("This project is performed by the CRI team at Paris.  "
@@ -57,53 +57,76 @@ st.image('CovidData/covid.jpg')
 st.sidebar.title("Selector")
 st.sidebar.write("-----------")
 st.sidebar.write("**Usage of Sidebar** ")
-st.sidebar.write(" If you want to use updated data you need to click button and it will take little time....")
-get_data =st.sidebar.button('Extract New Data')
-st.sidebar.write("You can select new cases, new_death, total confirmed cases per million("
-                 "normalized), total death cases per million(normalized), vaccination per hundred and country by "
+st.sidebar.write("You can select new cases & new death, total confirmed cases per million("
+                 "normalized) & total death cases per million(normalized), vaccination per hundred and country by "
                  "date. Feel free "
                  "to play see the graph. ")
-
-if get_data:
-    all_data = take_data()
-else:
-    all_data = pd.read_csv('CovidData/all_data.csv')
-
-all_data['date'] =pd.to_datetime(all_data.date)
-
-cd = st.sidebar.checkbox('New Cases and Death')
+st.sidebar.write('Your select will give by day results.')
+cd = st.sidebar.checkbox('New Cases and Death ')
 total = st.sidebar.checkbox('Total Confirmed Cases and Deaths(normalized)')
 vac = st.sidebar.checkbox('Vaccination')
 
-select_country = st.sidebar.multiselect("Select Countries",country_list,default=["France"])
-start_date = st.sidebar.date_input('Select Start Date', datetime.date(2020,1,24))
+start_date = st.sidebar.date_input('Select Start Date', datetime.date(2020, 1, 24))
 end_date = st.sidebar.date_input('Select End Date', datetime.datetime.now().date())
-st.markdown('<style>h1{color: red;}</style>', unsafe_allow_html=True)
+if start_date and end_date:
+    selected_date = pd.date_range(start_date, end_date - datetime.timedelta(days=1), freq='d')
+else:
+    selected_date = all_data['date'].unique()
 
-new_confirmed = df_confirm[df_confirm['country'].isin(select_country)]
-new_confirmed = new_confirmed.sort_values(by=['date'], ascending = False)
+select_country = st.sidebar.multiselect("Select Countries", country_list, default=["France"])
+col1,col2 = st.beta_columns(2)
 
-confirmed_plot = px.line(new_confirmed, x = 'date', y = 'value', color='country')
-
-confirmed_plot.update_layout(title="Cumulative Number Of Covid confirmed Cases",
-                 xaxis = dict(title = 'Date'),
-                 yaxis = dict(title = 'Number of People'),
-                 legend_title=dict(text='<b>Countries</b>'),
+if cd:
+    cases_death = all_data[all_data['date'].isin(selected_date)]
+    cases_death = cases_death[cases_death['location'].isin(select_country)]
+    cases_plot = px.line(cases_death, x='date', y='new_cases', color='location')
+    death_plot = px.line(cases_death, x='date', y='new_deaths', color='location')
+    cases_plot.update_layout(title="Number of Confirmed Cases",
+                  xaxis=dict(title='Date'),
+                  yaxis=dict(title='Number of People'),
+                  legend_title=dict(text='<b>Countries</b>'),
                   )
+    death_plot.update_layout(title="Number of Confirmed Deaths",
+                             xaxis=dict(title='Date'),
+                             yaxis=dict(title='Number of People'),
+                             legend_title=dict(text='<b>Countries</b>'),
+                             )
+    col1.plotly_chart(cases_plot, use_container_width=True)
+    col2.plotly_chart(death_plot, use_container_width=True)
 
-new_death =  df_deaths[df_deaths['country'].isin(select_country)]
-new_death = new_death.sort_values(by=['date'], ascending = False)
+if total:
+    total_death_cases = all_data[all_data['date'].isin(selected_date)]
+    total_death_cases = total_death_cases[total_death_cases['location'].isin(select_country)]
+    total_cases_plot = px.line(total_death_cases, x='date', y='total_cases_per_million', color='location')
+    total_death_plot = px.line(total_death_cases, x='date', y='total_deaths_per_million', color='location')
+    total_cases_plot.update_layout(title="Cumulative Confirmed Cases(normalized)",
+                             xaxis=dict(title='Date'),
+                             yaxis=dict(title='Number of People per million'),
+                             legend_title=dict(text='<b>Countries</b>')
+                                    )
+    total_death_plot.update_layout(title="Cumulative Confirmed Deaths(normalized)",
+                                    xaxis=dict(title='Date'),
+                                    yaxis=dict(title='Number of People per million'),
+                                    legend_title=dict(text='<b>Countries</b>')
+                                   )
+    col1.plotly_chart(total_cases_plot, use_container_width=True)
+    col2.plotly_chart(total_death_plot,use_container_width=True)
 
-death_plot = px.line(new_death, x = 'date', y = 'value',color='country')
-death_plot.update_layout(title="Cumulative Number Of Covid Death Cases",
-                 xaxis = dict(title = 'Date'),
-                 yaxis = dict(title = 'Number of People'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                  )
+if vac:
+    vac_df = all_data[all_data['date'].isin(selected_date)]
+    vac_df = vac_df[vac_df['location'].isin(select_country)]
+    vac_plot = px.line(vac_df, x='date', y='total_vaccinations_per_hundred', color='location')
+    vac_plot.update_layout(title="Vaccinations(normalized)",
+                                   xaxis=dict(title='Date'),
+                                   yaxis=dict(title='Number of People per hundred'),
+                                   legend_title=dict(text='<b>Countries</b>')
+                                   )
+    st.plotly_chart(vac_plot,use_container_width=True)
 
-if case_death  == 'Confirmed cases':
+
+
+
     # st.write('<span style="color:%s">%s</span>' % ('red', " **Total Confirmed Cases : and Total Deaths : ** "), unsafe_allow_html=True)
-    st.plotly_chart(confirmed_plot,use_container_width=True)
-elif case_death == 'Death cases':
+
     # st.write('<span style="color:%s">%s</span>' % ('red', " **Total Confirmed Cases : and Total Deaths : ** "), unsafe_allow_html=True)
-    st.plotly_chart(death_plot, use_container_width=True)
+
