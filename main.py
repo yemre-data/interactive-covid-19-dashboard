@@ -142,7 +142,7 @@ if seven:
                            case_or_death=["Deaths"] * number_of_country + ["Cases"] * number_of_country))
 
     plot_average = px.scatter(df, x="country", y="average", color="case_or_death",
-               title="Seven Days Rolling Average Deaths And Cases",
+               title=" Last Seven Days Rolling Average Deaths And Cases",
                labels={"average": "Rolling Average"}
                )
     st.plotly_chart(plot_average,use_container_width=True)
