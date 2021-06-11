@@ -36,8 +36,8 @@ $ pip install -r requirements.txt
 There have: 
 ```
 pandas == 1.2.4
-streamlit==0.82.0
-plotly==4.14.3
+streamlit == 0.82.0
+plotly == 4.14.3
 ```
 
 - 2nd Please install [Pycharm](https://www.jetbrains.com/fr-fr/pycharm/) ， you can choose PyCharm Community Edition, it's free.
