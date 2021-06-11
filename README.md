@@ -22,7 +22,7 @@ You can select new cases and new death, total confirmed cases per million(normal
 
 ## Dev Process
 - COVID DATA extracted from open source - 21/05/2021
-- Population DATA extracted from Kaggle - 2020
+- Population DATA extracted from Kaggle 
 - Creating streamlit interface on Pycharm
 
 ## How to install
