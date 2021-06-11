@@ -28,7 +28,7 @@ def take_data():
         'https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true').reset_index()
 
     all_data = all_data[['location', 'date', 'new_cases', 'new_deaths', 'total_cases_per_million',
-                         'total_deaths_per_million', 'total_vaccinations_per_hundred']].copy()
+                         'total_deaths_per_million','new_vaccinations', 'total_vaccinations_per_hundred']].copy()
     return all_data
 
 
@@ -49,7 +49,7 @@ st.markdown("# Welcome to Interactive Covid-19 Analysis DashBoard ")
 st.markdown("This project is performed by the CRI team at Paris.  "
             "As vaccinations increase and covid-19 approaches towards the end, "
             "we would like analyze current situation of Covid on the world. "
-            "This page is created to analyze Covid-19 confirmed cases and deaths data from Jan 2020 to 2021.   ")
+            "This page is created to analyze Covid-19 confirmed cases,deaths and vacinations data from Jan 2020 to 2021.   ")
 
 st.markdown("(Data is taken from open-source: https://github.com/owid/covid-19-data) ")
 
@@ -115,18 +115,26 @@ if total:
 if vac:
     vac_df = all_data[all_data['date'].isin(selected_date)]
     vac_df = vac_df[vac_df['location'].isin(select_country)]
-    vac_plot = px.line(vac_df, x='date', y='total_vaccinations_per_hundred', color='location')
-    vac_plot.update_layout(title="Vaccinations(normalized)",
+    total_vac_plot = px.line(vac_df, x='date', y='total_vaccinations_per_hundred', color='location')
+    total_vac_plot.update_layout(title="CumulativeVaccinations(normalized)",
                                    xaxis=dict(title='Date'),
                                    yaxis=dict(title='Number of People per hundred'),
                                    legend_title=dict(text='<b>Countries</b>')
                                    )
-    st.plotly_chart(vac_plot,use_container_width=True)
+    vac_plot = px.line(vac_df, x='date', y='new_vaccinations', color='location')
+    vac_plot.update_layout(title="Vaccinations",
+                                   xaxis=dict(title='Date'),
+                                   yaxis=dict(title='Number of People per hundred'),
+                                   legend_title=dict(text='<b>Countries</b>')
+                                   )
+    col1.plotly_chart(total_vac_plot,use_container_width=True)
+    col2.plotly_chart(vac_plot,use_container_width=True)
 
 
-
-
-    # st.write('<span style="color:%s">%s</span>' % ('red', " **Total Confirmed Cases : and Total Deaths : ** "), unsafe_allow_html=True)
-
-    # st.write('<span style="color:%s">%s</span>' % ('red', " **Total Confirmed Cases : and Total Deaths : ** "), unsafe_allow_html=True)
+world_death = all_data['new_deaths'].sum(axis = 0, skipna = True)
+world_cases = all_data['new_cases'].sum(axis = 0, skipna = True)
+world_vac = all_data['new_vaccinations'].sum(axis = 0, skipna = True)
+col1.write('<span style="color:%s">%s</span>' % ('red', " **Total Deaths on World :** "+ str(world_death)), unsafe_allow_html=True)
+col2.write('<span style="color:%s">%s</span>' % ('black', " **Total Confirmed Cases: **" +str(world_cases)), unsafe_allow_html=True)
+st.write('<span style="color:%s">%s</span>' % ('green', " ** 💉💉💉💉💉💉💉💉💉💉💉💉💉 Total Vacinations: **" +str(world_vac) +" **💉💉💉💉💉💉💉💉💉💉💉💉💉💉**"), unsafe_allow_html=True)
 
