@@ -8,6 +8,7 @@ st.set_page_config(layout="wide")
 
 
 # Read data
+@st.cache
 def take_data():
     all_data = pd.read_csv(
         'https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true').reset_index()
