@@ -132,8 +132,11 @@ if vac:
 
 
 world_death = all_data['new_deaths'].sum(axis = 0, skipna = True)
+world_death =  '{:,.2f}'.format(world_death)
 world_cases = all_data['new_cases'].sum(axis = 0, skipna = True)
+world_cases =  '{:,.2f}'.format(world_cases)
 world_vac = all_data['new_vaccinations'].sum(axis = 0, skipna = True)
+world_vac =  '{:,.2f}'.format(world_vac)
 col1.write('<span style="color:%s">%s</span>' % ('red', " **Total Deaths on World :** "+ str(world_death)), unsafe_allow_html=True)
 col2.write('<span style="color:%s">%s</span>' % ('black', " **Total Confirmed Cases: **" +str(world_cases)), unsafe_allow_html=True)
 st.write('<span style="color:%s">%s</span>' % ('green', " ** 💉💉💉💉💉💉💉💉💉💉💉💉💉 Total Vacinations: **" +str(world_vac) +" **💉💉💉💉💉💉💉💉💉💉💉💉💉💉**"), unsafe_allow_html=True)
