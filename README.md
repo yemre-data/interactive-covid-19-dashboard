@@ -1,5 +1,4 @@
-[dir:5eeb2ea8f7735553d877a76415236120572ba9d7](https://archive.softwareheritage.org/badge/swh:1:dir:5eeb2ea8f7735553d877a76415236120572ba9d7/) (https://archive.softwareheritage.org/swh:1:dir:5eeb2ea8f7735553d877a76415236120572ba9d7;origin=https://github.com/yemre-data/interactive-covid-19-dashboard;visit=swh:1:snp:4b2b78cbd332b2adb1789e1641b838fb116990a9;anchor=swh:1:rev:809801eb783cd152bfe5f39cbc93f2cc3785ffb7)
-
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:5eeb2ea8f7735553d877a76415236120572ba9d7/)](https://archive.softwareheritage.org/swh:1:dir:5eeb2ea8f7735553d877a76415236120572ba9d7;origin=https://github.com/yemre-data/interactive-covid-19-dashboard;visit=swh:1:snp:4b2b78cbd332b2adb1789e1641b838fb116990a9;anchor=swh:1:rev:809801eb783cd152bfe5f39cbc93f2cc3785ffb7)
 # interactive-covid-19-dashboard
 - Description
 - Dev Process
