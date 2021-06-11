@@ -1,25 +1,10 @@
+
 import pandas as pd
-import pandas as pd
-import numpy as np
-from datetime import datetime
-import matplotlib
-import matplotlib.pyplot as plt
-from matplotlib import rcParams
 import plotly.express as px
-import plotly.graph_objects as go
-import plotly.figure_factory as ff
-from plotly.subplots import make_subplots
-import json
-from geopy.geocoders import Nominatim
-import requests
 import datetime
 import streamlit as st
-import folium
-import streamlit as st
 st.set_page_config(layout="wide")
-import plotly.graph_objects as go
-import numpy as np
-from plotly.subplots import make_subplots
+
 
 
 # Read data
@@ -36,6 +21,8 @@ def take_data():
 all_data = take_data()
 all_data['date'] = pd.to_datetime(all_data.date)
 all_data = all_data.sort_values(by=['date'], ascending=False)
+all_data["new_cases"] = all_data["new_cases"].abs()
+all_data["new_deaths"] = all_data["new_deaths"].abs()
 country_list = list(all_data.location.unique())
 country_list.sort()
 st.cache(persist=True)
@@ -138,6 +125,6 @@ world_cases =  '{:,.2f}'.format(world_cases)
 world_vac = all_data['new_vaccinations'].sum(axis = 0, skipna = True)
 world_vac =  '{:,.2f}'.format(world_vac)
 col1.write('<span style="color:%s">%s</span>' % ('red', " **Total Deaths on World :** "+ str(world_death)), unsafe_allow_html=True)
-col2.write('<span style="color:%s">%s</span>' % ('black', " **Total Confirmed Cases: **" +str(world_cases)), unsafe_allow_html=True)
-st.write('<span style="color:%s">%s</span>' % ('green', " ** 💉💉💉💉💉💉💉💉💉💉💉💉💉 Total Vacinations: **" +str(world_vac) +" **💉💉💉💉💉💉💉💉💉💉💉💉💉💉**"), unsafe_allow_html=True)
+col2.write('<span style="color:%s">%s</span>' % ('black', " **Total Confirmed Cases on World: **" +str(world_cases)), unsafe_allow_html=True)
+st.write('<span style="color:%s">%s</span>' % ('green', " ** 💉💉💉💉💉💉💉💉💉💉💉💉 Total Vacinations on World: **" +str(world_vac) +" **💉💉💉💉💉💉💉💉💉💉💉💉💉**"), unsafe_allow_html=True)
 
