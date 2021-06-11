@@ -12,16 +12,30 @@
 The number of cases and deaths per country and date are provided as open-data by the [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19). 
 Dashboard and Visualisation was created by the three students of [CRI-AIRE Master](https://master.cri-paris.org/en).
 
+You can select new cases and new death, total confirmed cases per million(normalized) and total death cases per million(normalized), vaccination per hundred and conutry by date. Feel free to play and the the graph.
+
+
+
 ## Dev Process
 - COVID DATA extracted from open source - 21/05/2021
 - Population DATA extracted from Kaggle - 2020
 - Creating streamlit interface on Pycharm
 
 ## How to install
-- 1st You need to install [streamlit](https://streamlit.io/) 
+- 1st You need to install [streamlit](https://streamlit.io/) and [pandas](https://pandas.pydata.org/), [plotly](https://plotly.com/)
+
+Please install the project dependencies run pip install -r requirements.txt
+
 ```
-$ pip install streamlit
+$ pip install -r requirements.txt
 ```
+There have: 
+```
+pandas == 1.2.4
+streamlit==0.82.0
+plotly==4.14.3
+```
+
 - 2nd Please install [Pycharm](https://www.jetbrains.com/fr-fr/pycharm/) ， you can choose PyCharm Community Edition, it's free.
 
 - 3rd CE example:
