@@ -13,7 +13,7 @@
 - This project provides an interactive dashoboard of COVID-19  confirmed and death cases  data that you can run on your local server by running the main.py file on local software. 
 - Theaim is to give a clear interactive vizualisation of the covid-19 epidemic in different countries of the world. 
 
-The number of cases and deaths per country and date are provided as open-data by the [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19). 
+The number of cases and deaths per country and date are provided as open-data by the [COVID-19 Dataset by Our World in Data](https://github.com/owid/covid-19-data). 
 Dashboard and Visualisation was created by the three students of [CRI-AIRE Master](https://master.cri-paris.org/en).
 
 You can select new cases and new death, total confirmed cases per million(normalized) and total death cases per million(normalized), vaccination per hundred and conutry by date. Feel free to play and the the graph.
